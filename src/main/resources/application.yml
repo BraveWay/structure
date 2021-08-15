@@ -1,0 +1,9 @@
+server:
+  port: 8081
+spring:
+  #数据库连接配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://bjjgq.ticp.net:1522/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: whxxykj
+    password: whxxykj2011
