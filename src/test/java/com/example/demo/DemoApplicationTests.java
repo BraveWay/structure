@@ -18,6 +18,8 @@ class DemoApplicationTests {
 
         try{
             UserService userService = config.getUserService();
+//            config.getUserEntityManager().findById("1");
+//            userService.createUserQuery().count();
             System.out.println(userService.createUserQuery().count());
         }catch(Exception e){
             e.printStackTrace();

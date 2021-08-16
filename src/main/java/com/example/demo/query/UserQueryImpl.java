@@ -19,7 +19,6 @@ public class UserQueryImpl extends AbstractVariableQueryImpl<UserQuery, User> im
 
     @Override
     public long executeCount(CommandContext commandContext) {
-        commandContext.getUserEntityManager();
         return commandContext.getUserEntityManager().findUserCountByQueryCriteria(this);
     }
 

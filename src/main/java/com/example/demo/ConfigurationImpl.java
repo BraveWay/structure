@@ -214,7 +214,7 @@ public class ConfigurationImpl {
 
     public Configuration initMybatisConfiguration(Environment environment, Reader reader, Properties properties) {
         XMLConfigBuilder parser = new XMLConfigBuilder(reader, "", properties);
-        Configuration configuration = parser.getConfiguration();
+        Configuration configuration =  parser.parse();
 
         if(databaseType != null) {
             configuration.setDatabaseId(databaseType);

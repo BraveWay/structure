@@ -3,29 +3,22 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
+    <settings>
+        <!-- 打印查询语句 -->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+
     <!-- Continue editing here -->
     <typeAliases>
         <package name="com.example.demo.entity"></package>
     </typeAliases>
 
-    <environments default="mybatis">
-        <environment id="mybatis">
-            <transactionManager type="JDBC"></transactionManager>
-            <!-- mybatis提供了3种数据源类型，分别是：POOLED,UNPOOLED,JNDI -->
-            <!-- POOLED 表示支持JDBC数据源连接池 -->
-            <!-- UNPOOLED 表示不支持数据源连接池 -->
-            <!-- JNDI 表示支持外部数据源连接池 -->
-            <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://bjjgq.ticp.net:1522/test?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai"/>
-                <property name="username" value="whxxykj"/>
-                <property name="password" value="whxxykj201111"/>
-            </dataSource>
-        </environment>
-    </environments>
 
     <mappers>
         <mapper resource="mapper/User.xml"></mapper>
     </mappers>
+
+
 
 </configuration>

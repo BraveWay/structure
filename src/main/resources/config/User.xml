@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.entity.UserEntityImpl">
+
+    <!-- User INSERT -->
+
+    <insert id="insertUser" parameterType="com.example.demo.entity.UserEntityImpl">
+        insert into USER (ID,NAME)
+        values (#{id, jdbcType=INTEGER},
+                1,
+                #{name, jdbcType=VARCHAR},
+               )
+    </insert>
+
+    <select id="selectUserCountByQueryCriteria" parameterType="com.example.demo.query.UserQueryImpl" resultType="long">
+        select count(distinct ID) from user;
+    </select>
+
+    <resultMap id="userResultMap" type="com.example.demo.entity.UserEntityImpl">
+        <id property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="name" column="NAME" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findById" parameterType="integer" resultMap="userResultMap">
+        select * from USER where ID = #{id, jdbcType=INTEGER}
+    </select>
+
+    <select id="selectUser" parameterType="integer" resultMap="userResultMap">
+        select * from USER where ID = #{id, jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByName" parameterType="string" resultMap="userResultMap">
+        select * from USER where NAME = #{name, jdbcType=VARCHAR}
+    </select>
+
+</mapper>

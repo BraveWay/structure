@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.common.DbSqlSessionFactory;
+import com.example.demo.common.UserDataManager;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -18,7 +19,7 @@ public class Test {
 
         DbSqlSessionFactory sessionFactory = new DbSqlSessionFactory();
 
-//        MybatisUserDataManager userManager = new MybatisUserDataManager(session,sessionFactory);
+//        UserDataManager userManager = new MybatisUserDataManager(session,sessionFactory);
 //
 //        MybatisStudentDataManager studentManager = new MybatisStudentDataManager(session,sessionFactory);
 //
