@@ -1,6 +1,4 @@
-package com.example.demo.entity;
-
-import com.example.demo.common.Entity;
+package com.example.demo.core.entity;
 
 public abstract class AbstractEntity implements Entity {
 

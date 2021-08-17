@@ -1,4 +1,4 @@
-package com.example.demo.query;
+package com.example.demo.core.query;
 
 import java.util.List;
 

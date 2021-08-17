@@ -1,6 +1,7 @@
-package com.example.demo.common;
+package com.example.demo.persistence;
 
 import com.example.demo.ConfigurationImpl;
+import com.example.demo.common.UserEntityManager;
 import com.example.demo.core.CommandContext;
 import com.example.demo.impl.Context;
 import org.apache.ibatis.session.SqlSession;

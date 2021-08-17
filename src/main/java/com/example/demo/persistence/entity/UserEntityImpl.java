@@ -1,6 +1,7 @@
-package com.example.demo.entity;
+package com.example.demo.persistence.entity;
 
-import com.example.demo.common.Entity;
+import com.example.demo.core.entity.Entity;
+import com.example.demo.core.entity.AbstractEntity;
 
 public class UserEntityImpl extends AbstractEntity implements UserEntity,User, Entity {
 

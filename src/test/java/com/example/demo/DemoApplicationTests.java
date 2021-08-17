@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import com.example.demo.common.MybatisUserDataManager;
-import com.example.demo.interceptor.CommandContextFactory;
 import com.example.demo.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.example.demo.core;
 
 import com.example.demo.ConfigurationImpl;
-import com.example.demo.cache.EntityCache;
+import com.example.demo.persistence.cache.EntityCache;
 import com.example.demo.common.UserEntityManager;
 import com.example.demo.interceptor.Command;
 import org.slf4j.Logger;

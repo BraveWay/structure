@@ -1,4 +1,4 @@
-package com.example.demo.common;
+package com.example.demo.core;
 
 import com.example.demo.core.CommandContext;
 import com.example.demo.core.DbSqlSession;

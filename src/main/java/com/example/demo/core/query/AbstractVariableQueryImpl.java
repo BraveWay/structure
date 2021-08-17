@@ -1,6 +1,5 @@
-package com.example.demo.query;
+package com.example.demo.core.query;
 
-import com.example.demo.common.AbstractManager;
 import com.example.demo.core.CommandContext;
 import com.example.demo.interceptor.CommandExecutor;
 

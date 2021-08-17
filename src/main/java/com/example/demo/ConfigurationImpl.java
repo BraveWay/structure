@@ -1,9 +1,11 @@
 package com.example.demo;
 
-import com.example.demo.cache.EntityCache;
-import com.example.demo.cache.EntityCacheImpl;
+import com.example.demo.persistence.cache.EntityCache;
+import com.example.demo.persistence.cache.EntityCacheImpl;
 import com.example.demo.common.*;
-import com.example.demo.core.ReflectUtil;
+import com.example.demo.core.DbSqlSessionFactory;
+import com.example.demo.persistence.entity.data.impl.MybatisUserDataManager;
+import com.example.demo.util.ReflectUtil;
 import com.example.demo.core.SessionFactory;
 import com.example.demo.impl.GenericManagerFactory;
 import com.example.demo.impl.cfg.CommandExecutorImpl;

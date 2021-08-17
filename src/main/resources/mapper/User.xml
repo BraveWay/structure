@@ -2,11 +2,11 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.entity.UserEntityImpl">
+<mapper namespace="com.example.demo.persistence.entity.UserEntityImpl">
 
     <!-- User INSERT -->
 
-    <insert id="insertUser" parameterType="com.example.demo.entity.UserEntityImpl">
+    <insert id="insertUser" parameterType="com.example.demo.persistence.entity.UserEntityImpl">
         insert into USER (ID,NAME)
         values (#{id, jdbcType=INTEGER},
                 1,
@@ -18,7 +18,7 @@
         select count(distinct ID) from user;
     </select>
 
-    <resultMap id="userResultMap" type="com.example.demo.entity.UserEntityImpl">
+    <resultMap id="userResultMap" type="com.example.demo.persistence.entity.UserEntityImpl">
         <id property="id" column="ID" jdbcType="INTEGER"/>
         <result property="name" column="NAME" jdbcType="VARCHAR"/>
     </resultMap>

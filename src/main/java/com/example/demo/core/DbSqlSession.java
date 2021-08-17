@@ -1,8 +1,7 @@
 package com.example.demo.core;
 
-import com.example.demo.cache.EntityCache;
-import com.example.demo.common.DbSqlSessionFactory;
-import com.example.demo.common.Entity;
+import com.example.demo.persistence.cache.EntityCache;
+import com.example.demo.core.entity.Entity;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

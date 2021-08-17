@@ -1,23 +1,19 @@
 package com.example.demo;
 
-import com.example.demo.common.DbSqlSessionFactory;
-import com.example.demo.common.UserDataManager;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 
 public class Test {
 
     public static void main(String[] args) {
-        //1.创建sqlsessionFactory
-        SqlSessionFactory sqlSessionFactory = DBtools.getSqlSessionFactory();
-
-        //2.创建SqlSession
-        SqlSession session = sqlSessionFactory.openSession();
-        //3.session 中创建相应的接口代理类，即mapper对象
-        //UserDao userBeanMapper = session.getMapper(UserDao.class);
-        //System.out.println(userBeanMapper.findById(1));
-
-        DbSqlSessionFactory sessionFactory = new DbSqlSessionFactory();
+//        //1.创建sqlsessionFactory
+//        SqlSessionFactory sqlSessionFactory = DBtools.getSqlSessionFactory();
+//
+//        //2.创建SqlSession
+//        SqlSession session = sqlSessionFactory.openSession();
+//        //3.session 中创建相应的接口代理类，即mapper对象
+//        //UserDao userBeanMapper = session.getMapper(UserDao.class);
+//        //System.out.println(userBeanMapper.findById(1));
+//
+//        DbSqlSessionFactory sessionFactory = new DbSqlSessionFactory();
 
 //        UserDataManager userManager = new MybatisUserDataManager(session,sessionFactory);
 //
@@ -48,7 +44,7 @@ public class Test {
 //            session.commit();//一定要提交，不然所有增删改操作不会生效的
 //            System.out.println(userBeanMapper.queryAll());
         }catch (Exception e){
-            session.rollback();//回滚
+//            session.rollback();//回滚
         }
 
     }

@@ -1,15 +1,16 @@
-package com.example.demo.common;
+package com.example.demo.persistence.entity.data.impl;
 
 import com.example.demo.ConfigurationImpl;
-import com.example.demo.entity.User;
-import com.example.demo.entity.UserEntity;
-import com.example.demo.entity.UserEntityImpl;
+import com.example.demo.common.UserDataManager;
+import com.example.demo.persistence.entity.User;
+import com.example.demo.persistence.entity.UserEntity;
+import com.example.demo.persistence.entity.UserEntityImpl;
+import com.example.demo.persistence.entity.data.AbstractDataManager;
 import com.example.demo.query.UserQueryImpl;
-import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
 
-public class MybatisUserDataManager extends AbstractDataManager<UserEntity> implements  UserDataManager {
+public class MybatisUserDataManager extends AbstractDataManager<UserEntity> implements UserDataManager {
 
     public MybatisUserDataManager(ConfigurationImpl config) {
         super(config);

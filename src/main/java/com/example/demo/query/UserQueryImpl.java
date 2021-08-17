@@ -1,7 +1,8 @@
 package com.example.demo.query;
 
 import com.example.demo.core.CommandContext;
-import com.example.demo.entity.User;
+import com.example.demo.core.query.AbstractVariableQueryImpl;
+import com.example.demo.persistence.entity.User;
 import com.example.demo.interceptor.CommandExecutor;
 import com.example.demo.interceptor.CommandInterceptor;
 
@@ -16,15 +17,9 @@ public class UserQueryImpl extends AbstractVariableQueryImpl<UserQuery, User> im
         super(commandExecutor);
     }
 
-
     @Override
     public long executeCount(CommandContext commandContext) {
         return commandContext.getUserEntityManager().findUserCountByQueryCriteria(this);
-    }
-
-    @Override
-    public UserQuery desc() {
-        return null;
     }
 
     @Override

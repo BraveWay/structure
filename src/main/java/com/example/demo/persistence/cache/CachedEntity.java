@@ -1,6 +1,6 @@
-package com.example.demo.cache;
+package com.example.demo.persistence.cache;
 
-import com.example.demo.common.Entity;
+import com.example.demo.core.entity.Entity;
 
 public class CachedEntity {
 

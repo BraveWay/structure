@@ -11,7 +11,7 @@
 
     <!-- Continue editing here -->
     <typeAliases>
-        <package name="com.example.demo.entity"></package>
+        <package name="com.example.demo.persistence.entity"></package>
     </typeAliases>
 
 
