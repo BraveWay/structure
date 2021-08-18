@@ -5,6 +5,8 @@ import com.example.demo.persistence.entity.UserEntity;
 import com.example.demo.persistence.entity.data.AbstractDataManager;
 import com.example.demo.query.UserQueryImpl;
 
+import java.util.List;
+
 public class UserEntityManagerImpl extends AbstractEntityManager<UserEntity> implements UserEntityManager{
 
     protected UserDataManager userDataManager;
@@ -22,6 +24,11 @@ public class UserEntityManagerImpl extends AbstractEntityManager<UserEntity> imp
     @Override
     public long findUserCountByQueryCriteria(UserQueryImpl userQuery) {
         return userDataManager.findUserCountByQueryCriteria(userQuery);
+    }
+
+    @Override
+    public List<UserEntity> findUsersByQueryCriteria(UserQueryImpl userQuery) {
+        return userDataManager.find;
     }
 
     @Override

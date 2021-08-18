@@ -32,4 +32,14 @@ public class MybatisUserDataManager extends AbstractDataManager<UserEntity> impl
     public long findUserCountByQueryCriteria(UserQueryImpl userQuery) {
         return (Long) getDbSqlSession().selectOne("selectUserCountByQueryCriteria",userQuery);
     }
+
+    @Override
+    public List<User> findUsersByQueryCriteria(UserQueryImpl userQuery) {
+        return getDbSqlSession().select;
+    }
+
+    @Override
+    public void insert(UserEntity entity) {
+
+    }
 }

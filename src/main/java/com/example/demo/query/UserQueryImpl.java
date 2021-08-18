@@ -2,6 +2,7 @@ package com.example.demo.query;
 
 import com.example.demo.core.CommandContext;
 import com.example.demo.core.query.AbstractVariableQueryImpl;
+import com.example.demo.impl.Page;
 import com.example.demo.persistence.entity.User;
 import com.example.demo.interceptor.CommandExecutor;
 import com.example.demo.interceptor.CommandInterceptor;
@@ -23,18 +24,9 @@ public class UserQueryImpl extends AbstractVariableQueryImpl<UserQuery, User> im
     }
 
     @Override
-    public User singleResult() {
-        return null;
-    }
-
-    @Override
-    public List<User> list() {
-        return null;
-    }
-
-    @Override
-    public List<User> listPage(int firstResult, int maxResults) {
-        return null;
+    public List<User> executeList(CommandContext commandContext, Page page) {
+        List<User> users =  commandContext.getUserEntityManager().findUserCountByQueryCriteria()
+        return ;
     }
 
     @Override

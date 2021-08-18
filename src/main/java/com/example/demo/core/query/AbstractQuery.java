@@ -16,8 +16,12 @@ public abstract class AbstractQuery<T extends Query<?,?>,U> extends ListQueryPar
     public static final String SORTORDER_ASC = "asc";
     public static final String SORTORDER_DESC = "desc";
 
-    public static enum ResultType{
+    public enum ResultType{
         LIST, LIST_PAGE, SINGLE_RESULT, COUNT
+    }
+
+    public enum NullHandlingOnOrder{
+        NULLS_FIRST,NULL_LAST
     }
 
     protected transient CommandExecutor commandExecutor;
@@ -30,10 +34,6 @@ public abstract class AbstractQuery<T extends Query<?,?>,U> extends ListQueryPar
     protected ResultType resultType;
 
     protected QueryProperty orderProperty;
-
-    public static enum NullHandlingOnOrder{
-        NULLS_FIRST,NULL_LAST
-    }
 
     protected NullHandlingOnOrder nullHandlingOnOrder;
 
@@ -49,18 +49,7 @@ public abstract class AbstractQuery<T extends Query<?,?>,U> extends ListQueryPar
         this.commandContext  = commandContext;
     }
 
-    @Override
-    public T orderBy(QueryProperty property){
-        this.orderProperty = property;
-        return (T) this;
-    }
-
-    public T orderBy(QueryProperty property,NullHandlingOnOrder nullHandlingOnOrder){
-        orderBy(property);
-        this.nullHandlingOnOrder = nullHandlingOnOrder;
-        return (T) this;
-    }
-
+    // override super class method
     @Override
     public T asc(){
         return direction(Direction.ASCENDING);
@@ -69,6 +58,65 @@ public abstract class AbstractQuery<T extends Query<?,?>,U> extends ListQueryPar
     @Override
     public T desc(){return direction(Direction.DESCENDING);}
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public T orderBy(QueryProperty property){
+        this.orderProperty = property;
+        return (T) this;
+    }
+
+    @Override
+    public long count(){
+        this.resultType = ResultType.COUNT;
+        if(commandExecutor != null){
+            return (Long) commandExecutor.execute(this);
+        }
+        return executeCount(Context.getCommandContext());
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public U singleResult() {
+        this.resultType = ResultType.SINGLE_RESULT;
+        if(commandExecutor != null){
+            return (U) commandExecutor.execute(this);
+        }
+        return executeSingleResult(Context.getCommandContext());
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<U> list() {
+        this.resultType = ResultType.LIST;
+        if(commandExecutor != null){
+            return  (List<U>) commandExecutor.execute(this);
+        }
+        return executeList(Context.getCommandContext(),null);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<U> listPage(int firstResult, int maxResults) {
+        this.firstResult = firstResult;
+        this.maxResults = maxResults;
+        this.resultType = ResultType.LIST_PAGE;
+        if(commandExecutor != null){
+         return (List<U>) commandExecutor.execute(this);
+        }
+        return executeList(Context.getCommandContext(),new Page(firstResult,maxResults));
+    }
+    // override super class method
+
+    @SuppressWarnings("unchecked")
+    public T orderBy(QueryProperty property,NullHandlingOnOrder nullHandlingOnOrder){
+        orderBy(property);
+        this.nullHandlingOnOrder = nullHandlingOnOrder;
+        return (T) this;
+    }
+
+
+
+    @SuppressWarnings("unchecked")
     public T direction(Direction direction){
        if(orderProperty == null){
            throw new RuntimeException("sss");
@@ -77,15 +125,6 @@ public abstract class AbstractQuery<T extends Query<?,?>,U> extends ListQueryPar
        orderProperty = null;
        nullHandlingOnOrder  = null;
        return (T) this;
-    }
-
-    @Override
-    public U singleResult() {
-        this.resultType = ResultType.SINGLE_RESULT;
-        if(commandExecutor != null){
-            return (U) commandExecutor.execute(this);
-        }
-        return executeSingleResult(Context.getCommandContext());
     }
 
     private U executeSingleResult(CommandContext commandContext){
@@ -98,28 +137,13 @@ public abstract class AbstractQuery<T extends Query<?,?>,U> extends ListQueryPar
         return null;
     }
 
-    @Override
-    public List<U> list() {
-        this.resultType = ResultType.LIST;
-        if(commandExecutor != null){
-            return  (List<U>) commandExecutor.execute(this);
-        }
-        return executeList(Context.getCommandContext(),null);
-    }
 
 
 
-    protected void addOrder(String colum, String sortOrder, NullHandlingOnOrder nullHandlingOnOrder){
+    protected void addOrder(String column, String sortOrder, NullHandlingOnOrder nullHandlingOnOrder){
 
     }
 
-    public long count(){
-        this.resultType = ResultType.COUNT;
-        if(commandExecutor != null){
-            return (Long) commandExecutor.execute(this);
-        }
-        return executeCount(Context.getCommandContext());
-    }
 
     public Object execute(CommandContext commandContext){
         return executeCount(commandContext);

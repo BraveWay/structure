@@ -11,4 +11,6 @@ public interface UserDataManager extends DataManager<UserEntity>{
     List<User> findUserByName(String name);
 
     long findUserCountByQueryCriteria(UserQueryImpl userQuery);
+
+    List<User> findUsersByQueryCriteria(UserQueryImpl userQuery);
 }
