@@ -62,7 +62,7 @@ public class DbSqlSession implements  Session{
 
         List<?> loadedObjects = sqlSession.selectList(statement,parameter);
         if(useCache){
-            return
+            return null;
         }
 
 
