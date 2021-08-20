@@ -2,9 +2,9 @@ package com.example.demo.core.entity;
 
 public interface Entity {
 
-    Integer getId();
+    String getId();
 
-    void setId(Integer id);
+    void setId(String id);
 
     Object getPersistentState();
 }

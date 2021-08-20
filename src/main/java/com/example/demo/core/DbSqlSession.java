@@ -1,12 +1,14 @@
 package com.example.demo.core;
 
 import com.example.demo.core.query.ListQueryParameterObject;
+import com.example.demo.persistence.cache.CachedEntity;
 import com.example.demo.persistence.cache.EntityCache;
 import com.example.demo.core.entity.Entity;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -54,22 +56,53 @@ public class DbSqlSession implements  Session{
         return entity;
     }
 
+    public List selectList(String statement,ListQueryParameterObject parameter){
+        return selectList(statement,parameter,true);
+    }
+
+    public List selectList(String statement,ListQueryParameterObject parameter,boolean useCache){
+        return selectListWithRawParameter(statement,parameter,parameter.getFirstResult(),parameter.getMaxResults(),useCache);
+    }
+
     public <T extends Entity> List<T> selectListWithRawParameter(String statement, Object parameter,int firstResult,int maxResults, boolean useCache){
         statement = dbSqlSessionFactory.mapStatement(statement);
         if(firstResult == -1 || maxResults == -1){
             return Collections.EMPTY_LIST;
         }
 
-        List<?> loadedObjects = sqlSession.selectList(statement,parameter);
+        List loadedObjects = sqlSession.selectList(statement,parameter);
         if(useCache){
-            return null;
+            return cachedLoadOrStore(loadedObjects);
+        }else {
+            return loadedObjects;
         }
-
-
-        return null;
     }
 
+    protected List cachedLoadOrStore(List<Object> loadedObjects){
+        if(loadedObjects.isEmpty()){
+            return loadedObjects;
+        }
+        if(!(loadedObjects.get(0) instanceof Entity)){
+            return loadedObjects;
+        }
 
+        List<Entity> filteredObjects = new ArrayList<Entity>(loadedObjects.size());
+        for(Object loadedObject : loadedObjects){
+            Entity cachedEntity =  cachedLoadOrStore((Entity) loadedObject);
+            filteredObjects.add(cachedEntity);
+        }
+        return filteredObjects;
+    }
+
+    protected Entity cachedLoadOrStore(Entity entity){
+        Entity cachedEntity = entityCache.findInCache(entity.getClass(),entity.getId());
+
+        if(cachedEntity != null){
+            return cachedEntity;
+        }
+        entityCache.put(entity,true);
+        return entity;
+    }
 
 
     @Override

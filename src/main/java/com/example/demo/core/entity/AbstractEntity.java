@@ -2,15 +2,15 @@ package com.example.demo.core.entity;
 
 public abstract class AbstractEntity implements Entity {
 
-    protected Integer id;
+    protected String id;
 
     @Override
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

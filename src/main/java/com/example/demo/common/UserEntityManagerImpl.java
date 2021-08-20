@@ -1,6 +1,7 @@
 package com.example.demo.common;
 
 import com.example.demo.ConfigurationImpl;
+import com.example.demo.persistence.entity.User;
 import com.example.demo.persistence.entity.UserEntity;
 import com.example.demo.persistence.entity.data.AbstractDataManager;
 import com.example.demo.query.UserQueryImpl;
@@ -27,8 +28,8 @@ public class UserEntityManagerImpl extends AbstractEntityManager<UserEntity> imp
     }
 
     @Override
-    public List<UserEntity> findUsersByQueryCriteria(UserQueryImpl userQuery) {
-        return userDataManager.find;
+    public List<User> findUsersByQueryCriteria(UserQueryImpl userQuery) {
+        return userDataManager.findUsersByQueryCriteria(userQuery);
     }
 
     @Override

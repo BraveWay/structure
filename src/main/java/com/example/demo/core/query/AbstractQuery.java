@@ -88,9 +88,9 @@ public abstract class AbstractQuery<T extends Query<?,?>,U> extends ListQueryPar
     @SuppressWarnings("unchecked")
     public List<U> list() {
         this.resultType = ResultType.LIST;
-        if(commandExecutor != null){
-            return  (List<U>) commandExecutor.execute(this);
-        }
+//        if(commandExecutor != null){
+//            return  (List<U>) commandExecutor.execute(this);
+//        }
         return executeList(Context.getCommandContext(),null);
     }
 

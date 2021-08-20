@@ -18,16 +18,19 @@ public class UserQueryImpl extends AbstractVariableQueryImpl<UserQuery, User> im
         super(commandExecutor);
     }
 
+
+    @Override
+    public List<User> executeList(CommandContext commandContext, Page page) {
+        List<User> users =  commandContext.getUserEntityManager().findUsersByQueryCriteria(this);
+        return users;
+    }
+
     @Override
     public long executeCount(CommandContext commandContext) {
         return commandContext.getUserEntityManager().findUserCountByQueryCriteria(this);
     }
 
-    @Override
-    public List<User> executeList(CommandContext commandContext, Page page) {
-        List<User> users =  commandContext.getUserEntityManager().findUserCountByQueryCriteria()
-        return ;
-    }
+
 
     @Override
     public UserQuery userId(String userId) {
@@ -44,13 +47,4 @@ public class UserQueryImpl extends AbstractVariableQueryImpl<UserQuery, User> im
         return null;
     }
 
-    @Override
-    public CommandInterceptor getNext() {
-        return null;
-    }
-
-    @Override
-    public void setNext(CommandContext next) {
-
-    }
 }

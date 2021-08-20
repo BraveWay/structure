@@ -35,4 +35,8 @@
         select * from USER where NAME = #{name, jdbcType=VARCHAR}
     </select>
 
+    <select id="selectUsersByQueryCriteria" parameterType="com.example.demo.query.UserQueryImpl" resultMap="userResultMap">
+        select id,name from user
+    </select>
+
 </mapper>
