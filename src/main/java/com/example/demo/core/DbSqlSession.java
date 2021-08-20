@@ -22,6 +22,7 @@ public class DbSqlSession implements  Session{
 
     public DbSqlSession(DbSqlSessionFactory dbSqlSessionFactory,EntityCache entityCache){
         this.dbSqlSessionFactory = dbSqlSessionFactory;
+        this.entityCache = entityCache;
         this.sqlSession = dbSqlSessionFactory.getSqlSessionFactory().openSession();
     }
 

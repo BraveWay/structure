@@ -36,8 +36,13 @@ public abstract class AbstractDataManager<EntityImpl extends Entity> extends Abs
             return null;
         }
 
+        // Cache
         EntityImpl cachedEntity = getEntityCache().findInCache(getManagedEntityClass(),entityId);
+        if(cachedEntity != null){
+            return cachedEntity;
+        }
 
+        //Database
         return getDbSqlSession().selectById(getManagedEntityClass(),entityId,false);
 
     }

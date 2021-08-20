@@ -21,8 +21,7 @@ public class UserQueryImpl extends AbstractVariableQueryImpl<UserQuery, User> im
 
     @Override
     public List<User> executeList(CommandContext commandContext, Page page) {
-        List<User> users =  commandContext.getUserEntityManager().findUsersByQueryCriteria(this);
-        return users;
+        return commandContext.getUserEntityManager().findUsersByQueryCriteria(this);
     }
 
     @Override
@@ -34,7 +33,7 @@ public class UserQueryImpl extends AbstractVariableQueryImpl<UserQuery, User> im
 
     @Override
     public UserQuery userId(String userId) {
-        return null;
+        return this;
     }
 
     @Override

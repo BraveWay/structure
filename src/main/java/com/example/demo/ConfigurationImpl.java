@@ -205,11 +205,13 @@ public class ConfigurationImpl {
     public InputStream getMyBatisXmlConfigurationStream() throws IOException {
 
         ClassPathResource resource = new ClassPathResource(DEFAULT_MYBATIS_MAPPING_FILE);
-        InputStream inputStream = resource.getInputStream();
 
-        return inputStream;
+        return resource.getInputStream();
     }
 
+    /**
+     *设置数据源，数据源由外部传入
+     */
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
@@ -246,8 +248,7 @@ public class ConfigurationImpl {
     }
 
     public ConfigurationImpl setUserEntityManager(UserEntityManager userEntityManagerEntityManager){
-       this.userEntityManager = userEntityManager;
-       return this;
+        return this;
     }
 
     public void initCommandExecutors() {
@@ -302,11 +303,6 @@ public class ConfigurationImpl {
 
     public UserService getUserService() {
         return userService;
-    }
-
-    public ConfigurationImpl setTaskService(UserService userService) {
-        this.userService = userService;
-        return this;
     }
 
     public void initServices() {

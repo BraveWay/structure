@@ -65,6 +65,17 @@ public abstract class AbstractQuery<T extends Query<?,?>,U> extends ListQueryPar
         return (T) this;
     }
 
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<U> list() {
+        this.resultType = ResultType.LIST;
+        if(commandExecutor != null){
+            return  (List<U>) commandExecutor.execute(this);
+        }
+        return executeList(Context.getCommandContext(),null);
+    }
+
     @Override
     public long count(){
         this.resultType = ResultType.COUNT;
@@ -84,15 +95,7 @@ public abstract class AbstractQuery<T extends Query<?,?>,U> extends ListQueryPar
         return executeSingleResult(Context.getCommandContext());
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<U> list() {
-        this.resultType = ResultType.LIST;
-//        if(commandExecutor != null){
-//            return  (List<U>) commandExecutor.execute(this);
-//        }
-        return executeList(Context.getCommandContext(),null);
-    }
+
 
     @Override
     @SuppressWarnings("unchecked")
@@ -146,7 +149,16 @@ public abstract class AbstractQuery<T extends Query<?,?>,U> extends ListQueryPar
 
 
     public Object execute(CommandContext commandContext){
-        return executeCount(commandContext);
+        if(resultType == ResultType.LIST){
+            return executeList(commandContext,null);
+        } else if(resultType == ResultType.SINGLE_RESULT){
+            return executeSingleResult(commandContext);
+        } else if(resultType == ResultType.LIST_PAGE){
+            return executeList(commandContext,null);
+        } else {
+            return executeCount(commandContext);
+        }
+
     }
 
     public abstract  long executeCount(CommandContext commandContext);

@@ -14,6 +14,11 @@
                )
     </insert>
 
+
+    <select id="selectUsersByQueryCriteria" parameterType="com.example.demo.query.UserQueryImpl" resultMap="userResultMap">
+        select id,name from user
+    </select>
+
     <select id="selectUserCountByQueryCriteria" parameterType="com.example.demo.query.UserQueryImpl" resultType="long">
         select count(distinct ID) from user;
     </select>
@@ -35,8 +40,6 @@
         select * from USER where NAME = #{name, jdbcType=VARCHAR}
     </select>
 
-    <select id="selectUsersByQueryCriteria" parameterType="com.example.demo.query.UserQueryImpl" resultMap="userResultMap">
-        select id,name from user
-    </select>
+
 
 </mapper>

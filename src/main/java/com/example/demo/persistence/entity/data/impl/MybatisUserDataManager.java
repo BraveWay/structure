@@ -34,9 +34,10 @@ public class MybatisUserDataManager extends AbstractDataManager<UserEntity> impl
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<User> findUsersByQueryCriteria(UserQueryImpl userQuery) {
         final String query = "selectUsersByQueryCriteria";
-        return getDbSqlSession().selectList(query,userQuery);
+        return (List<User>)getDbSqlSession().selectList(query,userQuery);
     }
 
     @Override
