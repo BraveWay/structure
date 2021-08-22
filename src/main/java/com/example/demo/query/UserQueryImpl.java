@@ -11,6 +11,8 @@ import java.util.List;
 
 public class UserQueryImpl extends AbstractVariableQueryImpl<UserQuery, User> implements  UserQuery{
 
+    protected String userId ;
+
     public UserQueryImpl(){
     }
 
@@ -33,6 +35,7 @@ public class UserQueryImpl extends AbstractVariableQueryImpl<UserQuery, User> im
 
     @Override
     public UserQuery userId(String userId) {
+        this.userId = userId;
         return this;
     }
 
